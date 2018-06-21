@@ -44,7 +44,8 @@ $("#startButton").on("click", function () {
   $("#start").empty();
   console.log("the game has started");
 
-  addQuestions();  
+  addQuestions();
+  createRadios();  
   //timer set for 15 seconds
   setTimeout(timeUp, 1000 * 60);
 
@@ -61,58 +62,80 @@ $("#startButton").on("click", function () {
 function addQuestions() {
 
   // Creating a div to hold the questions
-  var questionsDiv = $("<div class='questions' col-sm-12 shadow-lg p-3 mb-5 bg-white>");
+  var questionsDiv = $("<div class='questions col-sm-12 shadow-lg p-3 mb-5 bg-white'>");
 
   // Storing the rating data
   var question1 = questions[0].question;
   console.log(question1);
 
   // Creating an element to have the rating displayed
-  var pOne = $("<p>").text("Question 1: " + question1);
+  var pOne = $("<div>").text("Question 1: " + question1);
 
   // Displaying the rating
   questionsDiv.append(pOne);
-
+  var radioButtons = createRadios(0);
+  pOne.append(radioButtons);
   // Storing the release year
   var question2 = questions[1].question;
   console.log(question2);
 
   // Creating an element to hold the release year
-  var pTwo = $("<p>").text("Question 2: " + question2);
+  var pTwo = $("<div>").text("Question 2: " + question2);
 
   // Displaying the release year
   questionsDiv.append(pTwo);
-
+  var radioButtons = createRadios(1);
+  pTwo.append(radioButtons);
+  
   // Storing the plot
   var question3 = questions[2].question;
   console.log(question3);
   // Creating an element to hold the plot
-  var pThree = $("<p>").text("Question 3: " + question3);
+  var pThree = $("<div>").text("Question 3: " + question3);
 
   // Appending the plot
   questionsDiv.append(pThree);
-
+  var radioButtons = createRadios(2);
+  pThree.append(radioButtons);
+  
   // Retrieving the URL for the image
   var question4 = questions[3].question;
   console.log(question4);
   // Creating an element to hold the image
-  var pFour = $("<p>").text("Question 4: " + question4);
+  var pFour = $("<div>").text("Question 4: " + question4);
 
   // Appending the image
   questionsDiv.append(pFour);
+  var radioButtons = createRadios(3);
+  pFour.append(radioButtons);
+  
 
   var question5 = questions[4].question;
   console.log(question5);
   //Creating an element to hold the image
-  var pFive = $("<p>").text("Question 5: " + question5);
+  var pFive = $("<div>").text("Question 5: " + question5);
 
   // Appending the image
   questionsDiv.append(pFive);
-
+  var radioButtons = createRadios(4);
+  pFive.append(radioButtons);
+  
   // Putting the entire movie above the previous movies
   $("#questionGroup").append(questionsDiv);
 };
 
-
+function createRadios(index) {
+  var radioList = $('<ul>');
+  var item;
+  var input = '';
+  for (var i = 0; i < questions[index].choices.length; i++) {
+    item = $('<li>');
+    input = '<input type="radio" name="answer" value=' + i + ' />';
+    input += questions[index].choices[i];
+    item.append(input);
+    radioList.append(item);
+  }
+  return radioList;
+}
 
 
