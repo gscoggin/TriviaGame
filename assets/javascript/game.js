@@ -44,8 +44,7 @@ $("#startButton").on("click", function () {
   $("#start").empty();
   console.log("the game has started");
 
-  addQuestions();
-  createRadios();  
+  addQuestions(); 
   //timer set for 15 seconds
   setTimeout(timeUp, 1000 * 60);
 
@@ -69,7 +68,7 @@ function addQuestions() {
   console.log(question1);
 
   // Creating an element to have the rating displayed
-  var pOne = $("<div>").text("Question 1: " + question1);
+  var pOne = $("<p>").text("Question 1: " + question1);
 
   // Displaying the rating
   questionsDiv.append(pOne);
@@ -80,7 +79,7 @@ function addQuestions() {
   console.log(question2);
 
   // Creating an element to hold the release year
-  var pTwo = $("<div>").text("Question 2: " + question2);
+  var pTwo = $("<p>").text("Question 2: " + question2);
 
   // Displaying the release year
   questionsDiv.append(pTwo);
@@ -91,7 +90,7 @@ function addQuestions() {
   var question3 = questions[2].question;
   console.log(question3);
   // Creating an element to hold the plot
-  var pThree = $("<div>").text("Question 3: " + question3);
+  var pThree = $("<p>").text("Question 3: " + question3);
 
   // Appending the plot
   questionsDiv.append(pThree);
@@ -102,7 +101,7 @@ function addQuestions() {
   var question4 = questions[3].question;
   console.log(question4);
   // Creating an element to hold the image
-  var pFour = $("<div>").text("Question 4: " + question4);
+  var pFour = $("<p>").text("Question 4: " + question4);
 
   // Appending the image
   questionsDiv.append(pFour);
@@ -113,15 +112,18 @@ function addQuestions() {
   var question5 = questions[4].question;
   console.log(question5);
   //Creating an element to hold the image
-  var pFive = $("<div>").text("Question 5: " + question5);
+  var pFive = $("<p>").text("Question 5: " + question5);
 
   // Appending the image
   questionsDiv.append(pFive);
   var radioButtons = createRadios(4);
   pFive.append(radioButtons);
   
+  var endbutton = $("<button class='btn btn-primary btn-lg'>").text("End Game");
+  questionsDiv.append(endbutton);
   // Putting the entire movie above the previous movies
   $("#questionGroup").append(questionsDiv);
+  //createEndButton();
 };
 
 function createRadios(index) {
